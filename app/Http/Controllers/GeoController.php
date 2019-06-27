@@ -29,9 +29,9 @@ class GeoController extends Controller
     $datos = \DB::table('botons')->join('detalles', 'botons.id', '=', 'detalles.id_boton')
                                  ->join('geos', 'detalles.id', '=', 'geos.id_detalle')
                                   ->where('botons.id', '=', $id)
-                                  ->select('botons.*', 'detalles.titulo', 'detalles.imagen as foto', 'geos.*')
+                                  ->select('botons.*', 'detalles.titulo', 'detalles.distrito', 'detalles.zona', 'detalles.distrito', 'detalles.monto_total', 'detalles.superficie_construida', 'detalles.imagen as foto', 'geos.*')
                                   ->get();
-                                  return view('mapa.index', compact('datos'));
+    return view('mapa.index', compact('datos'));
 
   }
 

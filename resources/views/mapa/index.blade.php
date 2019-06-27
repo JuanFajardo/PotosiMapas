@@ -6,8 +6,24 @@
 <div id="salud{{$dato->id}}" class="modal">
   <div class="modal-content">
     <p> <h2>{{$dato->titulo}}</h2> </p><br>
-    <img src="{{asset('RughHXvNTFm9zzBett0zzPpFGaE2r7mjB9/'.$dato->foto)}}" width="150">
-    <b style="font-size:20px;">PUNTO DE SALUD SEVILLA</b>: Calle Ilustres Esql Av. Tinkuy
+    <div class="row">
+      <div class="col-md-5" style="float:left;">
+        <img src="{{asset('RughHXvNTFm9zzBett0zzPpFGaE2r7mjB9/'.$dato->foto)}}" width="550">
+      </div>
+      <div class="col-md-1" >
+        &nbsp;
+      </div>
+      <div class="col-md-6" style="float:right; vertical-align: text-bottom; vertical-align: super;">
+        <p style="font-size:20px;">   <b>MONTO : </b> {{$dato->monto_total}} Bs.</p>
+        <p style="font-size:20px;">   <b>AREA : </b> {{$dato->superficie_construida}}</p>
+        <p style="font-size:20px;">   <b>ZONA : </b> {{$dato->zona}}</p>
+        <p style="font-size:20px;">   <b>DISTRITO : </b> {{$dato->distrito}}</p>
+      </div>
+    </div>
+
+
+
+
   </div>
 </div>
 @endforeach
