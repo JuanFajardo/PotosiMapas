@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Detalle extends Model
 {
   protected $table = 'detalles';
-  protected $fillable = ['id', 'imagen', 'titulo', 'departamento', 'provincia', 'distrito', 'zona', 'superficie_construida', 'superficie_terreno', 'monto_total', 'monto_upre', 'monto_gamp', 'estaodo', 'plazo', 'descripcion', 'beneficiario_estudiante', 'descripcion', 'color', 'id_boton'];
+  protected $fillable = ['id', 'imagen', 'titulo', 'departamento', 'provincia', 'distrito', 'zona', 'superficie_construida',
+      'superficie_terreno', 'monto_total', 'monto_upre', 'monto_gamp', 'estado', 'plazo', 'descripcion', 'beneficiario_estudiante', 'descripcion', 'color', 'id_boton'];
 
   public function setImagenAttribute($imagen){
     $this->attributes['imagen'] = md5(date('Y_m_d_H_i_s_')).'_'.$imagen->getClientOriginalName();

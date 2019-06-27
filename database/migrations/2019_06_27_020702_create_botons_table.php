@@ -17,6 +17,8 @@ class CreateBotonsTable extends Migration
 	         $table->increments('id');
            $table->string('boton');
            $table->string('imagen');
+           $table->string('icono');
+           $table->string('tipo')->comment('linea/punto');
            $table->timestamps();
         });
     }

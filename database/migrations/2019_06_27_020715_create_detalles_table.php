@@ -27,11 +27,11 @@ class CreateDetallesTable extends Migration
            $table->string('monto_total')->nullable()->default('0');
            $table->string('monto_upre')->nullable()->default('0');
            $table->string('monto_gamp')->nullable()->default('0');
-           $table->string('estaodo')->nullable()->default(null);
+           $table->string('estado')->nullable()->default(null);
            $table->string('plazo')->nullable()->default('0');
-           $table->string('descripcion')->comment('Detalle de la informacion');
+           //$table->string('descripcion')->comment('Detalle de la informacion');
            $table->string('beneficiario_estudiante')->nullable()->default('0');
-	         $table->text('descripcion');
+	         $table->text('descripcion')->comment('Detalle de la informacion');
 	         $table->string('color');
 	         $table->integer('id_boton');
            $table->timestamps();
