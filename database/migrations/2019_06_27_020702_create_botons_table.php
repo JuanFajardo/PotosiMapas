@@ -16,7 +16,7 @@ class CreateBotonsTable extends Migration
         Schema::create('botons', function (Blueprint $table) {
 	         $table->increments('id');
            $table->string('boton');
-           $table->string('icono');
+           $table->string('imagen');
            $table->timestamps();
         });
     }

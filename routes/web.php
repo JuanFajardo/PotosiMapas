@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('gamp');
+    return "Hola";
 });
 
 Auth::routes();
