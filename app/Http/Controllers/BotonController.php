@@ -7,7 +7,7 @@ use App\Boton;
 class BotonController extends Controller
 {
   public function __construct(){
-    $this->middleware('auth');
+    //$this->middleware('auth');
   }
 
   public function index(Request $request){
@@ -15,14 +15,13 @@ class BotonController extends Controller
     if ($request->ajax()) {
       return $datos;
     }else{
-      $unidades = \DB::table('unidads')->select('unidad','id')->get();
-      return view('bien.index', compact('datos', 'unidades'));
+      return view('boton.index', compact('datos'));
     }
   }
 
   public function store(Request $request){
     $dato = new Boton;
-    $request['user_id'] = \Auth::user()->id;
+    $request['user_id'] = 1;//\Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
     return redirect('/Boton');
@@ -35,7 +34,7 @@ class BotonController extends Controller
 
   public function update(Request $request, $id){
     $dato = Boton::find($id);
-    $request['user_id'] = \Auth::user()->id;
+    $request['user_id'] = 1;//\Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
     return redirect('/Boton');

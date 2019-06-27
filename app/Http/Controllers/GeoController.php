@@ -7,26 +7,42 @@ use App\Geo;
 class GeoController extends Controller
 {
   public function __construct(){
-    $this->middleware('auth');
+    //$this->middleware('auth');
   }
 
   public function index(Request $request){
-    $datos = Geo::all();
+    $datos = \DB::table('geos')->join('detalles', 'geos.id_detalle', '=', 'detalles.id')
+                               ->select('geos.*', 'detalles.titulo')->get();
     if ($request->ajax()) {
       return $datos;
     }else{
-      $unidades = \DB::table('unidads')->select('unidad','id')->get();
-      return view('geo.index', compact('datos', 'unidades'));
+      return view('geo.index', compact('datos'));
     }
   }
 
-  public function store(Request $request){
+  public function ver($id){
+    $dato = \App\Detalle::find($id);
+    return view('geo.guardar', compact('dato'));
+  }
+
+  public function verMapa($id){
+    $datos = \DB::table('botons')->join('detalles', 'botons.id', '=', 'detalles.id_boton')
+                                 ->join('geos', 'detalles.id', '=', 'geos.id_detalle')
+                                  ->where('botons.id', '=', $id)
+                                  ->select('botons.*', 'detalles.titulo', 'detalles.imagen as foto', 'geos.*')
+                                  ->get();
+                                  return view('mapa.index', compact('datos'));
+
+  }
+
+  public function guardar(Request $request){
+    $request['user_id'] = 1; //\Auth::user()->id;
     $dato = new Geo;
-    $request['user_id'] = \Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
     return redirect('/Geo');
   }
+
 
   public function show($id){
     $datos = Geo::Where('id', '=', $id)->get();
@@ -49,6 +65,11 @@ class GeoController extends Controller
     }else{
       return redirect('/');
     }
+  }
+
+  public function mostrarIndex($id){
+    $dato = \App\Boton::find($id);
+    return view('mapa.index', compact('dato'));
   }
 
 }

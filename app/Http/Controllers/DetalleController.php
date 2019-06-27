@@ -7,22 +7,22 @@ use App\Detalle;
 class DetalleController extends Controller
 {
   public function __construct(){
-    $this->middleware('auth');
+    //$this->middleware('auth');
   }
 
   public function index(Request $request){
-    $datos = Detalle::all();
+    $datos = \DB::table('detalles')->join('botons', 'detalles.id_boton', '=', 'botons.id')
+                                   ->select('detalles.*', 'botons.boton')->get();
     if ($request->ajax()) {
       return $datos;
     }else{
-      $unidades = \DB::table('unidads')->select('unidad','id')->get();
-      return view('detalle.index', compact('datos', 'unidades'));
+      return view('detalle.index', compact('datos'));
     }
   }
 
   public function store(Request $request){
     $dato = new Detalle;
-    $request['user_id'] = \Auth::user()->id;
+    $request['user_id'] = 1; //\Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
     return redirect('/Detalle');
@@ -35,7 +35,7 @@ class DetalleController extends Controller
 
   public function update(Request $request, $id){
     $dato = Detalle::find($id);
-    $request['user_id'] = \Auth::user()->id;
+    $request['user_id'] = 1; //\Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
     return redirect('/Detalle');
