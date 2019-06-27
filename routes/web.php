@@ -11,11 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    //return view('gamp');
-    return "Hola";
+Route::get('/', function(){
+  return view('gamp');
 });
+Route::get('/Mapa/{id}', 'GeoController@mostrarIndex');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/Boton', 'BotonController');
+Route::resource('/Detalle', 'DetalleController');
+Route::resource('/Geo', 'GeoController');
+Route::get('Geolocalizar/{id}', 'GeoController@ver');
+Route::post('Geolocalizar', 'GeoController@guardar')->name('geolocalizar');
+
+Route::get('Mapa/{id}', 'GeoController@verMapa');
