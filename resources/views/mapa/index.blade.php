@@ -1,8 +1,8 @@
 @extends('gamp')
 
 @section('titulo')
-<style>#titulo{position: absolute; top:50px; left:100px;}</style>
- <h2 class="label label-info" id="titulo"> {{$datos[0]->boton}} </h2>
+
+ <h1 class="label label-info" style="position: relative; top:50px; left:100px;"> {{$datos[0]->boton}} </h1>
 @endsection
 
 
