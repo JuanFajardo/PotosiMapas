@@ -1,7 +1,7 @@
 @extends('gamp')
 
 @section('titulo')
- <h3> {{$datos[0]->boton}} </h3>
+ <h3 class="label "> {{$datos[0]->boton}} </h3>
 @endsection
 
 @section('modal')
@@ -14,22 +14,11 @@
         <img src="{{asset('RughHXvNTFm9zzBett0zzPpFGaE2r7mjB9/'.$dato->foto)}}" width="450">
       </div>
       <div class="col-md-6" style="float:right; vertical-align: text-bottom; vertical-align: super;">
-
-
-        <p style="font-size:18px;">   <b>MONTO : </b> {{$dato->monto_total}} Bs.</p>
-        <p style="font-size:20px;">   <b>AREA : </b> {{$dato->superficie_construida}}</p>
-        <p style="font-size:20px;">   <b>ZONA : </b> {{$dato->zona}}</p>
-	      <p style="font-size:20px;">   <b>DISTRITO : </b> {{$dato->distrito}}</p>
-
-	      <p style="font-size:20px;">   <b>FUENTE : </b> {{$dato->estado}} </p>
-        <p style="font-size:20px;">   <b>TIPO : </b> {{$dato->plazo}} </p>
-        <p style="font-size:20px;">   <b>CAUDAL : </b> {{$dato->beneficiario_estudiante}} </p>
-
+        <p style="font-size:18px;">
+          {{$dato->descripcion}} Bs.
+        </p>
       </div>
     </div>
-
-
-
 
   </div>
 </div>
@@ -65,7 +54,7 @@
     @endforeach
 
 
-     function initMap() {
+    function initMap() {
      var uluru = {lat: -19.5844895, lng: -65.7527863};
      map = new google.maps.Map(document.getElementById('map'), { zoom: 13, center: uluru });
      @foreach($mapas as $mapa)
