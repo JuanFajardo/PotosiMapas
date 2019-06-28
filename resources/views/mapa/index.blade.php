@@ -42,7 +42,9 @@
 <script type="text/javascript">
   @if( $datos[0]->tipo == "linea")
     var map;
-
+    <?php $contador=0;
+    $colores = ["#F53D0B", "#F1F50B", "#64F50B", "#0BF5C7", "#0766B1", "#7807B1", "#B107A2", "#1A0108"];
+    ?>
     @foreach($mapas as $mapa)
     function area{{$mapa->idDetalleMapa}}(){
       var flightPlanCoordinates = [
@@ -52,8 +54,9 @@
             @endif
           @endforeach
   	  ];
-  	  flightPath7 = new google.maps.Polyline( { path: flightPlanCoordinates, geodesic: true, strokeColor: '#fc1f01', strokeOpacity: 0.5, strokeWeight: 15, } );
+  	  flightPath7 = new google.maps.Polyline( { path: flightPlanCoordinates, geodesic: true, strokeColor: '{{colores[$contador]}}', strokeOpacity: 0.5, strokeWeight: 15, } );
       flightPath7.setMap(map);
+      <?php $contador++; ?>
     }
     @endforeach
 
