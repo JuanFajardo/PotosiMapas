@@ -61,7 +61,7 @@ $colores = ["#F53D0B", "#F1F50B", "#64F50B", "#0BF5C7", "#0766B1", "#7807B1", "#
 
     function initMap() {
      var uluru = {lat: -19.5844895, lng: -65.7527863};
-     map = new google.maps.Map(document.getElementById('map'), { zoom: 13, mapTypeId: 'satelite', center: uluru });
+     map = new google.maps.Map(document.getElementById('map'), { zoom: 13,  center: uluru });
      @foreach($mapas as $mapa)
       area{{$mapa->idDetalleMapa}}();
      @endforeach
@@ -88,7 +88,7 @@ $colores = ["#F53D0B", "#F1F50B", "#64F50B", "#0BF5C7", "#0766B1", "#7807B1", "#
 
     function initMap() {
      var uluru = {lat: -19.5844895, lng: -65.7527863};
-     map = new google.maps.Map(document.getElementById('map'), { zoom: 13, mapTypeId: 'satelite',  center: uluru });
+     map = new google.maps.Map(document.getElementById('map'), { zoom: 13,  center: uluru });
 
 
      @foreach($datos as $dato)
