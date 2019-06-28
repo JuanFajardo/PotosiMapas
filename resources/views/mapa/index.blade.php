@@ -2,7 +2,7 @@
 
 @section('titulo')
   <div style="float: left; width:100%; vertical-align: text-bottom; vertical-align: super; border:solid 1px black;">
-    <p class="label label-info" style="position: absolute; top:50px; left:100px;">  <h2>{{$datos[0]->boton}}</h2> </p>
+    <p class="label label-info">  <h2>{{$datos[0]->boton}}</h2> </p>
   </div>
 
 @endsection
