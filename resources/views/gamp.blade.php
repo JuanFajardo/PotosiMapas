@@ -30,7 +30,7 @@
           &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/9')}}" class="btn btn-info form-control"> Alcantarillado </a>
           &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/10')}}" class="btn btn-info form-control"> Energia Electrica </a>
           &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/12')}}" class="btn btn-info form-control"> Residuos Solidos </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/13')}}" class="btn btn-info form-control"> Congestionamiento </a>
+          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/13')}}" class="btn btn-info form-control"> Congestionamiento </a><br><br>
 
           <a href="#" class="btn btn-primary form-control" style="font-size:15px;"> 2. PLANIFICACION URBANA </a>
             &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/14')}}" class="btn btn-info form-control"> Proyeccion de la mancha Urbana </a>
@@ -38,7 +38,7 @@
             &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/1')}}" class="btn btn-info form-control"> Educacion </a>
             &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/5')}}" class="btn btn-info form-control"> Salud </a>
             &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/16')}}" class="btn btn-info form-control"> Comercio </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/17')}}" class="btn btn-info form-control"> Areas verdes </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/17')}}" class="btn btn-info form-control"> Areas verdes </a><br><br>
 
           <a href="#" class="btn btn-primary form-control" style="font-size:15px;"> 3. PLAN DE REHABILITACION DEL CENTRO HISTORICO </a>
             &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/2')}}" class="btn btn-info form-control"> Peatonalización </a>
