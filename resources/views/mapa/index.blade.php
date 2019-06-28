@@ -15,12 +15,13 @@
       </div>
       <div class="col-md-6" style="float:right; vertical-align: text-bottom; vertical-align: super;">
 
-        <p style="font-size:20px;">   <b>MONTO : </b> {{$dato->monto_total}} Bs.</p>
+
+        <p style="font-size:18px;">   <b>MONTO : </b> {{$dato->monto_total}} Bs.</p>
         <p style="font-size:20px;">   <b>AREA : </b> {{$dato->superficie_construida}}</p>
         <p style="font-size:20px;">   <b>ZONA : </b> {{$dato->zona}}</p>
-	<p style="font-size:20px;">   <b>DISTRITO : </b> {{$dato->distrito}}</p>
+	      <p style="font-size:20px;">   <b>DISTRITO : </b> {{$dato->distrito}}</p>
 
-	<p style="font-size:20px;">   <b>FUENTE : </b> {{$dato->estado}} </p>
+	      <p style="font-size:20px;">   <b>FUENTE : </b> {{$dato->estado}} </p>
         <p style="font-size:20px;">   <b>TIPO : </b> {{$dato->plazo}} </p>
         <p style="font-size:20px;">   <b>CAUDAL : </b> {{$dato->beneficiario_estudiante}} </p>
 
@@ -41,25 +42,28 @@
 <script type="text/javascript">
   @if( $datos[0]->tipo == "linea")
     var map;
-    function area(){
-      var flightPlanCoordinates = [
 
-		@foreach($datos as $dato)
-    		new google.maps.LatLng({{$dato->latitud}}, {{$dato->longitud}}),
-                @endforeach
+    @foreach($mapas as $mapa)
+    function area{{$mapa->idDetalleMapa}}(){
+      var flightPlanCoordinates = [
+		      @foreach($datos as $dato)
+            @if($mapa->idDetalleMapa == $dato->idDetalleDato)
+    		      new google.maps.LatLng({{$dato->latitud}}, {{$dato->longitud}}),
+            @endif
+          @endforeach
   	  ];
   	  flightPath7 = new google.maps.Polyline( { path: flightPlanCoordinates, geodesic: true, strokeColor: '#fc1f01', strokeOpacity: 0.5, strokeWeight: 15, } );
       flightPath7.setMap(map);
     }
+    @endforeach
 
 
      function initMap() {
      var uluru = {lat: -19.5844895, lng: -65.7527863};
      map = new google.maps.Map(document.getElementById('map'), { zoom: 13, center: uluru });
-
-
-
-      area();
+     @foreach($mapas as $mapa)
+      area{{$mapa->idDetalleMapa}}();
+     @endforeach
    }
 
   @elseif( $datos[0]->tipo == "punto")

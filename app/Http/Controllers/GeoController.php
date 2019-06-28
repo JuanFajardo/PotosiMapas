@@ -26,12 +26,21 @@ class GeoController extends Controller
   }
 
   public function verMapa($id){
+    $boton = \App\Boton::find($id);
+    $mapas = "";
+    if($boton->tipo == "linea")
+      $mapas =  \DB::table('botons')->join('detalles', 'botons.id', '=', 'detalles.id_boton')
+                                    ->select('detalles.id as idDetalleMapa')
+                                    ->groupBy('detalles.id')->get();
+    else
+      $mapas = "";
+
     $datos = \DB::table('botons')->join('detalles', 'botons.id', '=', 'detalles.id_boton')
                                  ->join('geos', 'detalles.id', '=', 'geos.id_detalle')
                                   ->where('botons.id', '=', $id)
-                                  ->select('botons.*', 'detalles.titulo', 'detalles.distrito', 'detalles.*', 'detalles.plazo',  'detalles.zona', 'detalles.distrito', 'detalles.monto_total', 'detalles.superficie_construida', 'detalles.imagen as foto', 'geos.*')
+                                  ->select('botons.*', 'detalles.id as idDetalleDato', 'detalles.titulo', 'detalles.distrito', 'detalles.*', 'detalles.plazo',  'detalles.zona', 'detalles.distrito', 'detalles.monto_total', 'detalles.superficie_construida', 'detalles.imagen as foto', 'geos.*')
                                   ->get();
-    return view('mapa.index', compact('datos'));
+    return view('mapa.index', compact('datos', 'mapas'));
 
   }
 
