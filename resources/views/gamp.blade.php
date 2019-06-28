@@ -25,26 +25,26 @@
     <div style="float: right; width:10%; vertical-align: text-bottom; vertical-align: super;">
       <?php $datos = \App\Boton::all(); ?>
 
-          <a href="#" class="btn btn-info form-control" style="font-size:15px;"> 1. SERVICIOS BASICOS </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/4')}}" class=""> Agua Potable </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/9')}}" class=""> Alcantarillado </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/10')}}" class=""> Energia Electrica </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/12')}}" class=""> Residuos Solidos </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/13')}}" class=""> Congestionamiento </a>
+          <a href="#" class="btn btn-primary form-control" style="font-size:15px;"> 1. SERVICIOS BASICOS </a>
+          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/4')}}" class="btn btn-info form-control"> Agua Potable </a>
+          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/9')}}" class="btn btn-info form-control"> Alcantarillado </a>
+          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/10')}}" class="btn btn-info form-control"> Energia Electrica </a>
+          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/12')}}" class="btn btn-info form-control"> Residuos Solidos </a>
+          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/13')}}" class="btn btn-info form-control"> Congestionamiento </a>
 
-          <a href="#" class="btn btn-info form-control" style="font-size:15px;"> 2. PLANIFICACION URBANA </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/14')}}" class=""> Proyeccion de la mancha Urbana </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/15')}}" class=""> Estrutura Vial </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/1')}}" class=""> Educacion </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/5')}}" class=""> Salud </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/16')}}" class=""> Comercio </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/17')}}" class=""> Areas verdes </a>
+          <a href="#" class="btn btn-primary form-control" style="font-size:15px;"> 2. PLANIFICACION URBANA </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/14')}}" class="btn btn-info form-control"> Proyeccion de la mancha Urbana </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/15')}}" class="btn btn-info form-control"> Estrutura Vial </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/1')}}" class="btn btn-info form-control"> Educacion </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/5')}}" class="btn btn-info form-control"> Salud </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/16')}}" class="btn btn-info form-control"> Comercio </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/17')}}" class="btn btn-info form-control"> Areas verdes </a>
 
-          <a href="#" class="btn btn-info form-control" style="font-size:15px;"> 3. PLAN DE REHABILITACION DEL CENTRO HISTORICO </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/2')}}" class=""> Peatonalización </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/7')}}" class=""> Criptas catacumbas </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/8')}}" class=""> Rutas turísticas </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/19')}}" class=""> Normativa de protección patrimonial </a>
+          <a href="#" class="btn btn-primary form-control" style="font-size:15px;"> 3. PLAN DE REHABILITACION DEL CENTRO HISTORICO </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/2')}}" class="btn btn-info form-control"> Peatonalización </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/7')}}" class="btn btn-info form-control"> Criptas catacumbas </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/8')}}" class="btn btn-info form-control"> Rutas turísticas </a>
+            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/19')}}" class="btn btn-info form-control"> Normativa de protección patrimonial </a>
 
       @foreach($datos as $dato)
       <div class="row" style="padding:5px;">
