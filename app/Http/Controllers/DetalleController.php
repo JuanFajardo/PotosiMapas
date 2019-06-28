@@ -49,22 +49,44 @@ class DetalleController extends Controller
   }
 
   public function update(Request $request, $id){
+
+    $request['departamento'] = '';
+    $request['provincia'] = '';
+    $request['distrito'] = '';
+    $request['zona'] = '';
+    $request['superficie_construida'] = '';
+    $request['superficie_terreno'] = '';
+    $request['monto_total'] = '';
+    $request['monto_upre'] = '';
+    $request['monto_gamp'] = '';
+    $request['estado'] = '';
+    $request['plazo'] = '';
+    $request['beneficiario_estudiante'] = '';
+    $request['user_id'] = 1; //\Auth::user()->id;
+
     $dato = Detalle::find($id);
 
-        $request['departamento'] = '';
-        $request['provincia'] = '';
-        $request['distrito'] = '';
-        $request['zona'] = '';
-        $request['superficie_construida'] = '';
-        $request['superficie_terreno'] = '';
-        $request['monto_total'] = '';
-        $request['monto_upre'] = '';
-        $request['monto_gamp'] = '';
-        $request['estado'] = '';
-        $request['plazo'] = '';
-        $request['beneficiario_estudiante'] = '';
-    $request['user_id'] = 1; //\Auth::user()->id;
-    $dato->fill($request->all());
+    $dato->departamento = '';
+    $dato->provincia = '';
+    $dato->distrito = '';
+    $dato->zona = '';
+    $dato->superficie_construida = '';
+    $dato->superficie_terreno = '';
+    $dato->monto_total = '';
+    $dato->monto_upre = '';
+    $dato->monto_gamp = '';
+    $dato->estado = '';
+    $dato->plazo = '';
+    $dato->beneficiario_estudiante = '';
+
+    if(isset($request->imagen) && strlen($request->imagen) > 0 )
+      $dato->imagen     = $request->imagen;
+      
+    $dato->titulo     = $request->titulo;
+    $dato->descripcion= $request->descripcion;
+    $dato->color      = $request->color;
+    $dato->id_boton   = $request->id_boton;
+    //$dato->fill($request->all());
     $dato->save();
     return redirect('/Detalle');
   }
