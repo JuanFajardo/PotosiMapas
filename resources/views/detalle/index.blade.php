@@ -154,7 +154,7 @@
         <td>{{ $dato->beneficiario_estudiante }}</td>
         <td> <img src="{{ asset('RughHXvNTFm9zzBett0zzPpFGaE2r7mjB9/'.$dato->imagen) }}" alt="" width="70"></td>
         <td>
-          <!-- <a href="#modalModifiar"  data-toggle="modal" data-target="" class="actualizar" style="color: #B8823B;"> <li class="fa fa-edit"></li>Editar</a> &nbsp;&nbsp;&nbsp; -->
+          <a href="#modalModifiar"  data-toggle="modal" data-target="" class="actualizar" style="color: #B8823B;"> <li class="fa fa-edit"></li>Editar</a> &nbsp;&nbsp;
           <a href="Geolocalizar/{{$dato->id}}"  style="color: #B8823B;"> <li class="fa fa-geo"></li>Geolocalizar</a> &nbsp;&nbsp;&nbsp;
           <a href="#"  data-toggle="modal" data-target="" style="color: #ff0000;" class="eliminar"> <li class="fa fa-trash"></li>Eliminar</a>
         </td>
