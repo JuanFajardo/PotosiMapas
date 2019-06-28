@@ -38,7 +38,7 @@
             {!! Form::text('titulo', null, ['class'=>'form-control', 'placeholder'=>'Escuela..', 'id'=>'titulo_', 'required']) !!}
           </div>
           <div class="col-md-4">
-            <label for="id_boton_" > <b><i>Titulo Proyecto</i></b> </label>
+            <label for="id_boton_" > <b><i>Titulo Menu</i></b> </label>
             {!! Form::select('id_boton', \App\Boton::pluck('boton', 'id'), null, ['class'=>'form-control', 'id'=>'id_boton_', 'required']) !!}
           </div>
           <div class="col-md-4">
@@ -50,70 +50,17 @@
 
         <div class="row">
           <div class="col-md-3">
-            <label for="departamento_" > <b><i>Departamento</i></b> </label>
-            {!! Form::text('departamento', null, ['class'=>'form-control', 'placeholder'=>'Potosi..', 'id'=>'departamento_', 'required']) !!}
+            <label for="descripcion_" > <b><i>descripcion</i></b> </label>
+            {!! Form::textarea('descripcion',  null, ['class'=>'form-control', 'placeholder'=>'Resumen ', 'id'=>'descripcion_', 'required']) !!}
           </div>
-          <div class="col-md-3">
-            <label for="provincia_" > <b><i>Provincia</i></b> </label>
-            {!! Form::text('provincia', null, ['class'=>'form-control', 'placeholder'=>'Tomas Frias..', 'id'=>'provincia', 'required']) !!}
-          </div>
-          <div class="col-md-3">
-            <label for="distrito_" > <b><i>Distrito</i></b> </label>
-            {!! Form::text('distrito', null, ['class'=>'form-control', 'placeholder'=>'17..', 'id'=>'distrito_', 'required']) !!}
-          </div>
-          <div class="col-md-3">
-            <label for="zona_" > <b><i>Zona</i></b> </label>
-            {!! Form::text('zona', null, ['class'=>'form-control', 'placeholder'=>'Escuela..', 'id'=>'zona_', 'required']) !!}
-          </div>
-        </div>
 
-        <div class="row">
           <div class="col-md-2">
-            <label for="superficie_construida_" > <b><i>Sup. Construida</i></b> </label>
-            {!! Form::text('superficie_construida', null, ['class'=>'form-control', 'placeholder'=>'1231..', 'id'=>'superficie_construida_', 'required']) !!}
-          </div>
-          <div class="col-md-2">
-            <label for="superficie_terreno_" > <b><i>Sup . Terreno</i></b> </label>
-            {!! Form::text('superficie_terreno', null, ['class'=>'form-control', 'placeholder'=>'1231..', 'id'=>'superficie_terreno_', 'required']) !!}
-          </div>
-          <div class="col-md-2">
-            <label for="monto_total_" > <b><i>Monto total</i></b> </label>
-            {!! Form::text('monto_total', null, ['class'=>'form-control', 'placeholder'=>'1500..', 'id'=>'monto_total_', 'required']) !!}
-          </div>
-          <div class="col-md-2">
-            <label for="monto_upre_" > <b><i>Monto Upre</i></b> </label>
-            {!! Form::text('monto_upre', null, ['class'=>'form-control', 'placeholder'=>'1500..', 'id'=>'monto_upre_', 'required']) !!}
-          </div>
-          <div class="col-md-2">
-            <label for="monto_gamp_" > <b><i>Monto GAMP</i></b> </label>
-            {!! Form::text('monto_gamp', null, ['class'=>'form-control', 'placeholder'=>'1500..', 'id'=>'monto_gamp_', 'required']) !!}
-          </div>
-          <div class="col-md-2">
-            <label for="color_" > <b><i></i></b> </label>
+            <label for="color_" > <b><i>Color</i></b> </label>
             {!! Form::color('color', null, ['class'=>'form-control', 'placeholder'=>'black', 'id'=>'color_', 'required']) !!}
           </div>
         </div>
 
 
-
-        <div class="row">
-          <div class="col-md-3">
-            <label for="estado_" > <b><i>Estado</i></b> </label>
-            {!! Form::text('estado',  null, ['class'=>'form-control', 'placeholder'=>'entregado/provisional ', 'id'=>'estado_', 'required']) !!}
-          </div>
-          <div class="col-md-3">
-            <label for="plazo_" > <b><i>Plazo</i></b> </label>
-            {!! Form::text('plazo',  null, ['class'=>'form-control', 'placeholder'=>'dias ', 'id'=>'plazo_', 'required']) !!}
-          </div>
-          <div class="col-md-3">
-            <label for="beneficiario_estudiante_" > <b><i>Ben. Estudiante</i></b> </label>
-            {!! Form::text('beneficiario_estudiante',  null, ['class'=>'form-control', 'placeholder'=>'150', 'id'=>'beneficiario_estudiante_', 'required']) !!}
-          </div>
-          <div class="col-md-3">
-            <label for="descripcion_" > <b><i>descripcion</i></b> </label>
-            {!! Form::textarea('descripcion',  null, ['class'=>'form-control', 'placeholder'=>'Resumen ', 'id'=>'descripcion_', 'required']) !!}
-          </div>
-        </div>
         <hr>
         {!! Form::hidden('id_user', '1') !!}
         {!! Form::submit('A&ntilde;adir', ['class'=>'agregar btn btn-primary']) !!}
@@ -134,33 +81,34 @@
                 </div>
                 <div class="modal-body panel-body">
                     {!! Form::open(['route'=>['Detalle.update', ':DATO_ID'], 'method'=>'PATCH', 'id'=>'form-update' ])!!}
-                    <div class="row">
-                      <div class="col-md-4">
-                        <label for="apertura" > <b><i>Apertura</i></b> </label>
-                        {!! Form::text('apertura', null, ['class'=>'form-control', 'placeholder'=>'Apertura', 'id'=>'apertura', 'required']) !!}
-                      </div>
-                      <div class="col-md-8">
-                        <label for="actividad" > <b><i>Actividad</i></b> </label>
-                        {!! Form::text('actividad', null, ['class'=>'form-control', 'placeholder'=>'Actividad', 'id'=>'actividad', 'required']) !!}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <label for="distrito" > <b><i>Distrito</i></b> </label>
-                        {!! Form::select('distrito', ['1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11'=>'11', '12'=>'12', '13'=>'13', '14'=>'14', '15'=>'15', '16'=>'16', '17'=>'17', '18'=>'18', '19'=>'19', '20'=>'20' ], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'distrito', 'required']) !!}
-                      </div>
-                      <div class="col-md-8">
-                        <label for="presupuesto" > <b><i>Presupuesto</i></b> </label>
-                        {!! Form::text('presupuesto', null, ['class'=>'form-control', 'placeholder'=>'Presupuesto', 'id'=>'presupuesto', 'required']) !!}
-                      </div>
-                    </div>
-                    <br><br>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label for="Observacion" > <b><i>Observacion</i></b> </label>
-                        {!! Form::text('observacion', null, ['class'=>'form-control', 'placeholder'=>'Observacion', 'id'=>'observacion', 'required']) !!}
-                      </div>
-                    </div>
+
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label for="titulo_" > <b><i>Titulo Proyecto</i></b> </label>
+                                {!! Form::text('titulo', null, ['class'=>'form-control', 'placeholder'=>'Escuela..', 'id'=>'titulo', 'required']) !!}
+                              </div>
+                              <div class="col-md-4">
+                                <label for="id_boton_" > <b><i>Titulo Menu</i></b> </label>
+                                {!! Form::select('id_boton', \App\Boton::pluck('boton', 'id'), null, ['class'=>'form-control', 'id'=>'id_boton', 'required']) !!}
+                              </div>
+                              <div class="col-md-4">
+                                <label for="imagen_" > <b><i>Imagen</i></b> </label>
+                                {!! Form::file('imagen', null, ['class'=>'form-control', 'placeholder'=>'imagen', 'id'=>'imagen', 'required']) !!}
+                              </div>
+                            </div>
+
+
+                            <div class="row">
+                              <div class="col-md-3">
+                                <label for="descripcion_" > <b><i>descripcion</i></b> </label>
+                                {!! Form::textarea('descripcion',  null, ['class'=>'form-control', 'placeholder'=>'Resumen ', 'id'=>'descripcion', 'required']) !!}
+                              </div>
+
+                              <div class="col-md-2">
+                                <label for="color_" > <b><i>Color</i></b> </label>
+                                {!! Form::color('color', null, ['class'=>'form-control', 'placeholder'=>'black', 'id'=>'color', 'required']) !!}
+                              </div>
+                            </div>
 
                     <hr>
                     {!! Form::hidden('id_user', '1') !!}
@@ -252,14 +200,15 @@
     var form = $('#form-update')
     var url = form.attr('action').replace(':DATO_ID', id);
     form.get(0).setAttribute('action', url);
-    link  = '{{ asset("/index.php/Proyecto/")}}/'+id;
+    link  = '{{ asset("/index.php/Detalle/")}}/'+id;
     $.getJSON(link, function(data, textStatus) {
       if(data.length > 0){
         $.each(data, function(index, el) {
-          $('#apertura').val(el.apertura);
-          $('#actividad').val(el.actividad);
-          $('#distrito').val(el.distrito);
-          $('#presupuesto').val(el.presupuesto);
+          $('#imagen').val(el.imagen);
+          $('#titulo').val(el.titulo);
+          $('#color').val(el.color);
+          $('#descripcion').val(el.descripcion);
+          $('#id_boton').val(el.id_boton);
         });
       }
     });

@@ -22,6 +22,21 @@ class DetalleController extends Controller
 
   public function store(Request $request){
     $dato = new Detalle;
+
+
+    $request['departamento'] = '';
+    $request['provincia'] = '';
+    $request['distrito'] = '';
+    $request['zona'] = '';
+    $request['superficie_construida'] = '';
+    $request['superficie_terreno'] = '';
+    $request['monto_total'] = '';
+    $request['monto_upre'] = '';
+    $request['monto_gamp'] = '';
+    $request['estado'] = '';
+    $request['plazo'] = '';
+    $request['beneficiario_estudiante'] = '';
+
     $request['user_id'] = 1; //\Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
@@ -35,6 +50,19 @@ class DetalleController extends Controller
 
   public function update(Request $request, $id){
     $dato = Detalle::find($id);
+
+        $request['departamento'] = '';
+        $request['provincia'] = '';
+        $request['distrito'] = '';
+        $request['zona'] = '';
+        $request['superficie_construida'] = '';
+        $request['superficie_terreno'] = '';
+        $request['monto_total'] = '';
+        $request['monto_upre'] = '';
+        $request['monto_gamp'] = '';
+        $request['estado'] = '';
+        $request['plazo'] = '';
+        $request['beneficiario_estudiante'] = '';
     $request['user_id'] = 1; //\Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
