@@ -1,7 +1,7 @@
 @extends('gamp')
 
 @section('titulo')
- <h2class="label label-info"> {{$datos[0]->boton}} </h2>
+ <h2 class="label label-info"> {{$datos[0]->boton}} </h2>
 @endsection
 
 
