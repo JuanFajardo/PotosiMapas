@@ -25,17 +25,17 @@
     <div style="float: right; width:10%; vertical-align: text-bottom; vertical-align: super;">
       <?php $datos = \App\Boton::all(); ?>
 
-<a href="#" class="btn btn-info form-control" style="font-size:15px;"> 1. DIAGNOSTICO Y SITUACION ACTUAL </a>
-          
+          <a href="#" class="btn btn-info form-control" style="font-size:15px;"> 1. SERVICIOS BASICOS </a>
+
           <a href="#" class="btn btn-info form-control" style="font-size:15px;"> 2. PLANIFICACION URBANA </a>
-          
+
           <a href="#" class="btn btn-info form-control" style="font-size:15px;"> 3. PLAN DE REHABILITACION DEL CENTRO HISTORICO </a>
 
       @foreach($datos as $dato)
       <div class="row" style="padding:5px;">
         <div class="col-md-12">
 
-		
+
           <a href="{{asset('index.php/Mapa/'.$dato->id)}}" class="btn btn-info form-control" style="font-size:15px;"> {{$dato->boton}} </a>
         </div>
       </div>
