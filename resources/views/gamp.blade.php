@@ -20,8 +20,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   </head>
   <body>
-         @yield('titulo')
+    @yield('titulo')
     <div id="map"></div>
+
     <div style="float: right; width:10%; vertical-align: text-bottom; vertical-align: super;">
       <?php $datos = \App\Boton::all(); ?>
 
