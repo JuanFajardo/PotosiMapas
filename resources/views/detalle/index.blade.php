@@ -80,7 +80,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body panel-body">
-                    {!! Form::open(['route'=>['Detalle.update', ':DATO_ID'], , 'enctype'=>'multipart/form-data', 'method'=>'PATCH', 'id'=>'form-update' ])!!}
+                    {!! Form::open(['route'=>['Detalle.update', ':DATO_ID'], 'enctype'=>'multipart/form-data', 'method'=>'PATCH', 'id'=>'form-update' ])!!}
 
                             <div class="row">
                               <div class="col-md-4">
