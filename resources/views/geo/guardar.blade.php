@@ -10,7 +10,7 @@
   <a href="{{asset('index.php')}}" style="color:#fff;" accesskey="i"></i> <u>I</u>nicio </a>
  @endsection
 
-@section('menuProyecto')
+@section('menuGeo')
  class="active-menu"
 @endsection
 

@@ -12,7 +12,7 @@
   <a  style="color:#fff;" href="#modalAgregar"   data-toggle="modal" class="nuevo" data-target="" accesskey="n"> <li class="fa fa-plus"></li> <u>N</u>uevo </a>
  @endsection
 
-@section('menuProyecto')
+@section('menuDetalle')
  class="active-menu"
 @endsection
 
