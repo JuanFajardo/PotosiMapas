@@ -29,7 +29,7 @@ class GeoController extends Controller
     $datos = \DB::table('botons')->join('detalles', 'botons.id', '=', 'detalles.id_boton')
                                  ->join('geos', 'detalles.id', '=', 'geos.id_detalle')
                                   ->where('botons.id', '=', $id)
-                                  ->select('botons.*', 'detalles.titulo', 'detalles.distrito', 'detalles.zona', 'detalles.distrito', 'detalles.monto_total', 'detalles.superficie_construida', 'detalles.imagen as foto', 'geos.*')
+                                  ->select('botons.*', 'detalles.titulo', 'detalles.distrito', 'detalles.*', 'detalles.plazo',  'detalles.zona', 'detalles.distrito', 'detalles.monto_total', 'detalles.superficie_construida', 'detalles.imagen as foto', 'geos.*')
                                   ->get();
     return view('mapa.index', compact('datos'));
 
@@ -51,7 +51,7 @@ class GeoController extends Controller
 
   public function update(Request $request, $id){
     $dato = Geo::find($id);
-    $request['user_id'] = \Auth::user()->id;
+    $request['user_id'] = 1; //\Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
     return redirect('/Geo');
