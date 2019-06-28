@@ -1,28 +1,29 @@
 @extends('gamp')
 
 @section('titulo')
- <h3 class="label "> {{$datos[0]->boton}} </h3>
+ <h2class="label label-info"> {{$datos[0]->boton}} </h2>
 @endsection
 
-@section('modal')
-@foreach($datos as $dato)
-<div id="salud{{$dato->id}}" class="modal">
-  <div class="modal-content">
-    <p> <h2>{{$dato->titulo}}</h2> </p><br>
-    <div class="row">
-      <div class="col-md-5" style="float:left;">
-        <img src="{{asset('RughHXvNTFm9zzBett0zzPpFGaE2r7mjB9/'.$dato->foto)}}" width="450">
-      </div>
-      <div class="col-md-6" style="float:right; vertical-align: text-bottom; vertical-align: super;">
-        <p style="font-size:18px;">
-          {!! $dato->descripcion !!}
-        </p>
-      </div>
-    </div>
 
+@section('modal')
+  @foreach($datos as $dato)
+  <div id="salud{{$dato->id}}" class="modal">
+    <div class="modal-content">
+      <p> <h2>{{$dato->titulo}}</h2> </p><br>
+      <div class="row">
+        <div class="col-md-5" style="float:left;">
+          <img src="{{asset('RughHXvNTFm9zzBett0zzPpFGaE2r7mjB9/'.$dato->foto)}}" width="450">
+        </div>
+        <div class="col-md-6" style="float:right; vertical-align: text-bottom; vertical-align: super;">
+          <p style="font-size:18px;">
+            {!! $dato->descripcion !!}
+          </p>
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
-@endforeach
+  @endforeach
 @endsection
 
 
