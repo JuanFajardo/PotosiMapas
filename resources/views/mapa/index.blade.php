@@ -56,7 +56,11 @@
   	  ];
   	  flightPath7 = new google.maps.Polyline( { path: flightPlanCoordinates, geodesic: true, strokeColor: '{{$colores[$contador]}}', strokeOpacity: 0.5, strokeWeight: 15, } );
       flightPath7.setMap(map);
-      <?php $contador++; ?>
+      <?php
+      $contador++;
+        if ( $contador > 7)
+          $contador = 0;
+      ?>
     }
     @endforeach
 
