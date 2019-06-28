@@ -15,7 +15,7 @@
       </div>
       <div class="col-md-6" style="float:right; vertical-align: text-bottom; vertical-align: super;">
         <p style="font-size:18px;">
-          {{$dato->descripcion}} Bs.
+          {!! $dato->descripcion !!} 
         </p>
       </div>
     </div>
