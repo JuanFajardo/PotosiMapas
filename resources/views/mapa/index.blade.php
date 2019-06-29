@@ -3,10 +3,38 @@
 @section('titulo')
   <div style="float: left; width:100%; vertical-align: text-bottom; vertical-align: super; border:solid 1px black;">
     <h2> <p class="label label-info">  {{$datos[0]->boton}} </p> </h2>
-  </div>
 
+    <?php
+    $link = \URL::current();
+    $numero = explode('/', $link);
+    ?>
+
+  </div>
 @endsection
 
+@section('m1')
+@if( end($numero) == "4" || end($numero) == "9" || end($numero) == "10" || end($numero) == "12" || end($numero) == "13" )
+
+@else
+tree
+@endif
+@endsection
+
+@section('m2')
+@if( end($numero) == "14" || end($numero) == "15" || end($numero) == "1" || end($numero) == "5"  || end($numero) == "16" || end($numero) == "17"  )
+
+@else
+tree
+@endif
+@endsection
+
+@section('m3')
+@if( end($numero) == "2" || end($numero) == "7" || end($numero) == "8" || end($numero) == "19" )
+
+@else
+tree
+@endif
+@endsection
 
 @section('modal')
   @foreach($datos as $dato)
@@ -32,9 +60,6 @@
 
 
 @section('js')
-<?php $contador=0;
-$colores = ["#F53D0B", "#F1F50B", "#64F50B", "#0BF5C7", "#0766B1", "#7807B1", "#B107A2", "#1A0108"];
-?>
 <script type="text/javascript">
   @if( $datos[0]->tipo == "linea")
     var map;
@@ -48,27 +73,20 @@ $colores = ["#F53D0B", "#F1F50B", "#64F50B", "#0BF5C7", "#0766B1", "#7807B1", "#
             @endif
           @endforeach
   	  ];
-  	  flightPath7 = new google.maps.Polyline( { path: flightPlanCoordinates, geodesic: true, strokeColor: '{{$colores[$contador]}}', strokeOpacity: 0.5, strokeWeight: 15, } );
+  	  flightPath7 = new google.maps.Polyline( { path: flightPlanCoordinates, geodesic: true, strokeColor: '{{$mapa->color}}', strokeOpacity: 0.7, strokeWeight: 10, } );
       flightPath7.setMap(map);
-      <?php
-      $contador++;
-        if ( $contador > 7)
-          $contador = 0;
-      ?>
     }
     @endforeach
 
-
     function initMap() {
-     var uluru = {lat: -19.5844895, lng: -65.7527863};
-     map = new google.maps.Map(document.getElementById('map'), { zoom: 13,  center: uluru });
+     var ulur = {lat: -19.5844895, lng: -65.7527863};
+     map = new google.maps.Map(document.getElementById('map'), { zoom: 13,  center: ulur, mapTypeId: google.maps.MapTypeId.SATELLITE });
      @foreach($mapas as $mapa)
       area{{$mapa->idDetalleMapa}}();
      @endforeach
    }
 
   @elseif( $datos[0]->tipo == "punto")
-
     @foreach($datos as $dato)
       var modal{{$dato->id}} = document.getElementById('salud{{$dato->id}}');
     	var span{{$dato->id}} = document.getElementsByClassName("close")[0];
@@ -84,28 +102,34 @@ $colores = ["#F53D0B", "#F1F50B", "#64F50B", "#0BF5C7", "#0766B1", "#7807B1", "#
       span{{$dato->id}}.onclick = function() { modal{{$dato->id}}.style.display = "none"; }
     @endforeach
 
-
-
     function initMap() {
      var uluru = {lat: -19.5844895, lng: -65.7527863};
-     map = new google.maps.Map(document.getElementById('map'), { zoom: 13,  center: uluru });
+     /*
+    roadmap displays the default road map view. This is the default map type.
+    satellite displays Google Earth satellite images.
+    hybrid displays a mixture of normal and satellite views.
+    terrain displays a physical map based on terrain information.
+     */
+     map = new google.maps.Map(document.getElementById('map'), { zoom: 13,  center: uluru, mapTypeId: google.maps.MapTypeId.SATELLITE });
 
+
+     var pinColor = "{{ explode('#', $datos[0]->color)[1] }}";
+     var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+        new google.maps.Size(21, 34),
+        new google.maps.Point(0,0),
+        new google.maps.Point(10, 34));
 
      @foreach($datos as $dato)
        //var image{{$dato->id}} = new google.maps.MarkerImage( '{{asset("/")}}/23394.png', new google.maps.Size(100,100));
        var place{{$dato->id}} = new google.maps.LatLng({{$dato->latitud}}, {{$dato->longitud}});
-       var marker{{$dato->id}} = new google.maps.Marker({ position: place{{$dato->id}}, map: map , title: '{{$dato->titulo}}'  , animation: google.maps.Animation.DROP,});
+       var marker{{$dato->id}} = new google.maps.Marker({ position: place{{$dato->id}}, map: map ,  icon: pinImage, title: '{{$dato->titulo}}'  , animation: google.maps.Animation.DROP,});
        function showInfo{{$dato->id}}() {
          var modal{{$dato->id}} = document.getElementById('salud{{$dato->id}}');
          modal{{$dato->id}}.style.display = 'block';
        }
        google.maps.event.addListener(marker{{$dato->id}}, 'click', showInfo{{$dato->id}} );
      @endforeach
-
     }
-
   @endif
-
-
 </script>
 @endsection

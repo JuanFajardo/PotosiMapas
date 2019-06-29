@@ -49,12 +49,26 @@
 
 
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label for="descripcion_" > <b><i>descripcion</i></b> </label>
             {!! Form::textarea('descripcion',  null, ['class'=>'form-control', 'placeholder'=>'Resumen ', 'id'=>'descripcion_', 'required']) !!}
           </div>
 
-          <div class="col-md-2">
+          <div class="col-md-4">
+            <label for="estado_" > <b><i>Tipo</i></b> </label>
+            <div class="row">
+              <div class="col-md-6">
+                Poligono
+                {{ Form::radio('estado', 'linea' , false, ['id'=>'linea_']) }}
+              </div>
+              <div class="col-md-6">
+                Puntos
+                {{ Form::radio('estado', 'punto' , false ,['id'=>'punto_']) }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
             <label for="color_" > <b><i>Color</i></b> </label>
             {!! Form::color('color', null, ['class'=>'form-control', 'placeholder'=>'black', 'id'=>'color_', 'required']) !!}
           </div>
@@ -99,12 +113,26 @@
 
 
                             <div class="row">
-                              <div class="col-md-3">
+                              <div class="col-md-4">
                                 <label for="descripcion_" > <b><i>descripcion</i></b> </label>
                                 {!! Form::textarea('descripcion',  null, ['class'=>'form-control', 'placeholder'=>'Resumen ', 'id'=>'descripcion', 'required']) !!}
                               </div>
 
-                              <div class="col-md-2">
+                              <div class="col-md-4">
+                                <label for="estado_" > <b><i>Tipo</i></b> </label>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    Poligono
+                                    {{ Form::radio('estado', 'linea' , false, ['id'=>'linea_']) }}
+                                  </div>
+                                  <div class="col-md-6">
+                                    Puntos
+                                    {{ Form::radio('estado', 'punto' , false ,['id'=>'punto_']) }}
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-md-4">
                                 <label for="color_" > <b><i>Color</i></b> </label>
                                 {!! Form::color('color', null, ['class'=>'form-control', 'placeholder'=>'black', 'id'=>'color', 'required']) !!}
                               </div>
@@ -130,14 +158,11 @@
 <table id="tablaGamp" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
   <thead>
     <tr>
-
+      <th>Id</th>
       <th>Boton</th>
       <th>Titulo</th>
-      <th>Distrito/Zona</th>
-      <th>Superficie</th>
-      <th>Monto Total</th>
-      <th>Estado</th>
-      <th>Beneficiario</th>
+      <th>Descripcion</th>
+      <th>Color</th>
       <th>Imagen</th>
       <th>Acciones</th>
     </tr>
@@ -145,18 +170,16 @@
   <tbody>
     @foreach($datos as $dato)
       <tr data-id="{{ $dato->id }}">
-        <td>  <b>{{ $dato->boton }}</b></td>
-        <td>{{ $dato->titulo }}</td>
-        <td>{{ $dato->distrito }} / {{ $dato->zona }}</td>
-        <td>{{ $dato->superficie_construida }}</td>
-        <td>{{ $dato->monto_total }}</td>
-        <td>{{ $dato->estado }}</td>
-        <td>{{ $dato->beneficiario_estudiante }}</td>
-        <td> <img src="{{ asset('RughHXvNTFm9zzBett0zzPpFGaE2r7mjB9/'.$dato->imagen) }}" alt="" width="70"></td>
+        <td> {{ $dato->id }} </td>
+        <td> <b>{{ $dato->boton }}</b> </td>
+        <td> {{ $dato->titulo }}</td>
+        <td> {{ $dato->descripcion }}</td>
+        <td> <p style="background-color:{{ $dato->color }};">&nbsp;</p> </td>
+        <td> <img src="{{ asset('RughHXvNTFm9zzBett0zzPpFGaE2r7mjB9/'.$dato->imagen) }}" alt="" width="70"> </td>
         <td>
-          <a href="#modalModifiar"  data-toggle="modal" data-target="" class="actualizar" style="color: #B8823B;"> <li class="fa fa-edit"></li>Editar</a> &nbsp;&nbsp;
-          <a href="Geolocalizar/{{$dato->id}}"  style="color: #0C9010;"> <li class="fa fa-binoculars"></li>Geolocalizar</a> &nbsp;&nbsp;&nbsp;
-          <a href="#"  data-toggle="modal" data-target="" style="color: #ff0000;" class="eliminar"> <li class="fa fa-trash"></li>Eliminar</a>
+          <a href="#modalModifiar"  data-toggle="modal" data-target="" class="actualizar" style="color: #B8823B;"> <li class="fa fa-edit"></li> Editar</a> <br>
+          <a href="Geolocalizar/{{$dato->id}}"  style="color: #0C9010;"> <li class="fa fa-binoculars"></li> Localizar</a> <br>
+          <a href="#"  data-toggle="modal" data-target="" style="color: #ff0000;" class="eliminar"> <li class="fa fa-trash"></li> Eliminar</a>
         </td>
       </tr>
     @endforeach
@@ -171,7 +194,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('#tablaGamp').DataTable({
-      "order": [[ 7, 'asc']],
+      "order": [[ 0, 'desc']],
       "language": {
         "bDeferRender": true,
         "sEmtpyTable": "No ay registros",

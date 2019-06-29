@@ -16,21 +16,8 @@ class CreateDetallesTable extends Migration
         Schema::create('detalles', function (Blueprint $table) {
 	         $table->increments('id');
 	         $table->string('imagen');
-
 	         $table->string('titulo')->comment('Unidad educativa');
-           $table->string('departamento')->nullable()->default(null);
-           $table->string('provincia')->nullable()->default(null);
-           $table->string('distrito')->nullable()->default(null);
-           $table->string('zona')->nullable()->default(null);
-           $table->string('superficie_construida')->nullable()->default('0');
-           $table->string('superficie_terreno')->nullable()->default('0');
-           $table->string('monto_total')->nullable()->default('0');
-           $table->string('monto_upre')->nullable()->default('0');
-           $table->string('monto_gamp')->nullable()->default('0');
-           $table->string('estado')->nullable()->default(null);
-           $table->string('plazo')->nullable()->default('0');
-           //$table->string('descripcion')->comment('Detalle de la informacion');
-           $table->string('beneficiario_estudiante')->nullable()->default('0');
+           $table->string('estado')->nullable()->comment('linea/punto');
 	         $table->text('descripcion')->comment('Detalle de la informacion');
 	         $table->string('color');
 	         $table->integer('id_boton');

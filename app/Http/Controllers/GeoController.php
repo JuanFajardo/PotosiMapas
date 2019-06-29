@@ -31,18 +31,18 @@ class GeoController extends Controller
 
     if($boton->tipo == "linea")
       $mapas =  \DB::table('botons')->join('detalles', 'botons.id', '=', 'detalles.id_boton')
-                                    ->select('detalles.id as idDetalleMapa')
-                                    ->groupBy('detalles.id')->get();
+                                    ->where('botons.id', '=', $id)
+                                    ->select('detalles.id as idDetalleMapa', 'detalles.color')
+                                    ->groupBy('detalles.id', 'detalles.color')->get();
     else
       $mapas = "";
 
     $datos = \DB::table('botons')->join('detalles', 'botons.id', '=', 'detalles.id_boton')
                                  ->join('geos', 'detalles.id', '=', 'geos.id_detalle')
                                   ->where('botons.id', '=', $id)
-                                  ->select('botons.*', 'detalles.titulo', 'detalles.id as idDetalleDato', 'detalles.descripcion', 'detalles.imagen as foto', 'geos.*')
+                                  ->select('botons.*', 'detalles.titulo', 'detalles.id as idDetalleDato', 'detalles.color', 'detalles.descripcion', 'detalles.imagen as foto', 'geos.*')
                                   ->get();
     return view('mapa.index', compact('datos', 'mapas'));
-
   }
 
   public function guardar(Request $request){

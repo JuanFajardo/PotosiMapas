@@ -3,7 +3,7 @@
   <head>
     <style>
  	    html, body { height: 100%; margin: 0; }
-      #map { min-height: 92%; width: 88%; float: left;}
+      #map { min-height: 90%; width: 85%; float: left; }
       .modal { display: none; /* Hidden by default */ position: fixed; /* Stay in place */ z-index: 1; /* Sit on top */ padding-top: 100px; /* Location of the box */ left: 0; top: 0; width: 100%; /* Full width */ height: 100%; /* Full height */ overflow: auto; /* Enable scroll if needed */ background-color: rgb(0,0,0); /* Fallback color */ background-color: rgba(0,0,0,0.4); /* Black w/ opacity */ }
       /* Modal Content */
       .modal-content { background-color: #fefefe; margin: auto; padding: 20px; border: 1px solid #888; width: 75%; }
@@ -11,6 +11,7 @@
       .close { color: #aaaaaa; float: right; font-size: 28px; font-weight: bold; }
       .close:hover,
       .close:focus { color: #000; text-decoration: none; cursor: pointer; }
+
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,43 +22,65 @@
   </head>
   <body>
     @yield('titulo')
-    <div id="map"></div>
 
-    <div style="float: right; width:10%; vertical-align: text-bottom; vertical-align: super;">
-      <?php $datos = \App\Boton::all(); ?>
+    <div style="float: left; width:15%; vertical-align: text-bottom; vertical-align: super;">
 
-          <a href="#" class="btn btn-primary form-control" style="font-size:15px;"> 1. SERVICIOS BASICOS </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/4')}}" class="btn btn-info form-control"> Agua Potable </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/9')}}" class="btn btn-info form-control"> Alcantarillado </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/10')}}" class="btn btn-info form-control"> Energia Electrica </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/12')}}" class="btn btn-info form-control"> Residuos Solidos </a>
-          &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/13')}}" class="btn btn-info form-control"> Congestionamiento </a><br><br>
-
-          <a href="#" class="btn btn-primary form-control" style="font-size:15px;"> 2. PLANIFICACION URBANA </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/14')}}" class="btn btn-info form-control"> Proyeccion de la mancha Urbana </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/15')}}" class="btn btn-info form-control"> Estrutura Vial </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/1')}}" class="btn btn-info form-control"> Educacion </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/5')}}" class="btn btn-info form-control"> Salud </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/16')}}" class="btn btn-info form-control"> Comercio </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/17')}}" class="btn btn-info form-control"> Areas verdes </a><br><br>
-
-          <a href="#" class="btn btn-primary form-control" style="font-size:15px;"> 3. PLAN DE REHABILITACION DEL CENTRO HISTORICO </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/2')}}" class="btn btn-info form-control"> Peatonalización </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/7')}}" class="btn btn-info form-control"> Criptas catacumbas </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/8')}}" class="btn btn-info form-control"> Rutas turísticas </a>
-            &nbsp;&nbsp;&nbsp;<a href="{{asset('index.php/Mapa/19')}}" class="btn btn-info form-control"> Normativa de protección patrimonial </a>
-
-      @foreach($datos as $dato)
-      <div class="row" style="padding:5px;">
+      <div class="row" >
         <div class="col-md-12">
-          <!-- <a href="{{asset('index.php/Mapa/'.$dato->id)}}" class="btn btn-info form-control" style="font-size:15px;"> {{$dato->boton}} </a> -->
+
+
+                  <ul class="nav nav-list">
+                      <li class=""><label class="tree-toggler nav-header btn btn-primary"  style="width:100%;"> 1. SERVICIOS BASICOS </label>
+                          <ul class="nav nav-list @yield('m1')">
+                            <li class=""><a href="{{asset('index.php/Mapa/4')}}" class="btn btn-default"> Agua Potable </a></li>
+                            <li><a href="{{asset('index.php/Mapa/9')}}" class="btn btn-default"> Alcantarillado </a></li>
+                            <li><a href="{{asset('index.php/Mapa/10')}}" class="btn btn-default"> Energia Electrica </a></li>
+                            <li><a href="{{asset('index.php/Mapa/12')}}" class="btn btn-default"> Residuos Solidos </a></li>
+                            <li><a href="{{asset('index.php/Mapa/13')}}" class="btn btn-default"> Congestionamiento </a></li>
+                          </ul>
+                      </li>
+
+                      <li><label class="tree-toggler nav-header btn btn-primary" style="width:100%;"> 2. PLANIFICACION <br>URBANA </label>
+                          <ul class="nav nav-list @yield('m2')">
+                            <li><a href="{{asset('index.php/Mapa/14')}}" class="btn btn-default" style="width:100%;"> Proyeccion de la <br/>mancha Urbana </a></li>
+                            <li><a href="{{asset('index.php/Mapa/15')}}" class="btn btn-default"> Estrutura Vial </a></li>
+                            <li><a href="{{asset('index.php/Mapa/1')}}" class="btn btn-default"> Educacion </a></li>
+                            <li><a href="{{asset('index.php/Mapa/5')}}" class="btn btn-default"> Salud </a></li>
+                            <li><a href="{{asset('index.php/Mapa/16')}}" class="btn btn-default"> Comercio </a></li>
+                            <li><a href="{{asset('index.php/Mapa/17')}}" class="btn btn-default"> Areas verdes </a></li>
+                          </ul>
+                      </li>
+
+                      <li><label class="tree-toggler nav-header btn btn-primary" style="width:100%;"> 3. PLAN DE REHABILITACION <br>DEL CENTRO HISTORICO </label>
+                          <ul class="nav nav-list @yield('m3')">
+                            <li><a href="{{asset('index.php/Mapa/2')}}" class="btn btn-default"> Peatonalización </a></li>
+                            <li><a href="{{asset('index.php/Mapa/7')}}" class="btn btn-default"> Criptas catacumbas </a></li>
+                            <li><a href="{{asset('index.php/Mapa/8')}}" class="btn btn-default"> Rutas turísticas </a></li>
+                            <li><a href="{{asset('index.php/Mapa/19')}}" class="btn btn-default"> Normativa de protección <br/>patrimonial </a></li>
+                          </ul>
+                      </li>
+                  </ul>
+
         </div>
       </div>
-      @endforeach
     </div>
+
+    <div id="map"></div>
+
+
     @yield('modal')
 
     @yield('js')
+    <script type="text/javascript">
+      $(document).ready( function () {
+        $('label.tree-toggler').click(function () {
+          $(this).parent().children('ul.tree').toggle(300);
+        });
+        $('label.tree-toggler').parent().children('ul.tree').toggle(1000);
+      });
+
+
+    </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3_Dqo-80xQtQXcth-uFD9Y71170wyi-4&callback=initMap">
     </script>

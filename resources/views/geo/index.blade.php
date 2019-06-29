@@ -59,7 +59,7 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>id_detalle</th>
+      <th>Detalle</th>
       <th>Latitud</th>
       <th>Longitud</th>
 
@@ -91,7 +91,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('#tablaGamp').DataTable({
-      "order": [[ 7, 'asc']],
+      "order": [[ 2, 'asc']],
       "language": {
         "bDeferRender": true,
         "sEmtpyTable": "No ay registros",
