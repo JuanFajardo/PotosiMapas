@@ -1,14 +1,12 @@
 @extends('gamp')
 
 @section('titulo')
-  <div style="float: left; width:100%; vertical-align: text-bottom; vertical-align: super; border:solid 1px black;">
+  <div style="float: left; width:100%; vertical-align: text-bottom; vertical-align: super; position: absolute;   z-index: 1; text-align: center;">
     <h2> <p class="label label-info">  {{$datos[0]->boton}} </p> </h2>
-
     <?php
     $link = \URL::current();
     $numero = explode('/', $link);
     ?>
-
   </div>
 @endsection
 
@@ -38,7 +36,7 @@ tree
 
 @section('modal')
   @foreach($datos as $dato)
-  <div id="salud{{$dato->id}}" class="modal">
+  <div id="salud{{$dato->id}}" class="modal" >
     <div class="modal-content">
       <p> <h2>{{$dato->titulo}}</h2> </p><br>
       <div class="row">

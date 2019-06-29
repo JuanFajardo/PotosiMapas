@@ -3,7 +3,7 @@
   <head>
     <style>
  	    html, body { height: 100%; margin: 0; }
-      #map { min-height: 90%; width: 85%; float: left; }
+      #map { min-height: 100%; width: 100%; float: left; }
       .modal { display: none; /* Hidden by default */ position: fixed; /* Stay in place */ z-index: 1; /* Sit on top */ padding-top: 100px; /* Location of the box */ left: 0; top: 0; width: 100%; /* Full width */ height: 100%; /* Full height */ overflow: auto; /* Enable scroll if needed */ background-color: rgb(0,0,0); /* Fallback color */ background-color: rgba(0,0,0,0.4); /* Black w/ opacity */ }
       /* Modal Content */
       .modal-content { background-color: #fefefe; margin: auto; padding: 20px; border: 1px solid #888; width: 75%; }
@@ -23,7 +23,7 @@
   <body>
     @yield('titulo')
 
-    <div style="float: left; width:15%; vertical-align: text-bottom; vertical-align: super;">
+    <div style="float: left; width:15%; vertical-align: text-bottom; vertical-align: super; position: absolute; top:55px;   z-index: 2;">
 
       <div class="row" >
         <div class="col-md-12">
