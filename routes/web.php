@@ -20,6 +20,7 @@ Route::get('/Mapa/{id}', 'GeoController@mostrarIndex');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/Menu', 'MenuController');
 Route::resource('/Boton', 'BotonController');
 Route::resource('/Detalle', 'DetalleController');
 Route::resource('/Geo', 'GeoController');
