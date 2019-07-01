@@ -8,8 +8,6 @@
 @section('descripcion') Administracion de los proyectos @endsection
 @section('titulo')
   <a href="{{asset('index.php')}}" style="color:#fff;" accesskey="i"></i> <u>I</u>nicio </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a  style="color:#fff;" href="#modalAgregar"   data-toggle="modal" class="nuevo" data-target="" accesskey="n"> <li class="fa fa-plus"></li> <u>N</u>uevo Proyecto </a>
  @endsection
 
 @section('menuGeo')

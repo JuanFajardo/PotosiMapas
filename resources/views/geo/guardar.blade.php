@@ -20,16 +20,12 @@
       <div class=" panel-body">
 
         <h3> {{$dato->titulo}} </h3>
-<br><br>
+        <br><br>
         {!! Form::open(['accept-charset'=>'UTF-8', 'route'=>['geolocalizar'], 'enctype'=>'multipart/form-data', 'method'=>'POST', 'files'=>true, 'autocomplete'=>'off', 'id'=>'form-insert'] ) !!}
         <div class="row">
-          <div class="col-md-4">
-            <label for="apertura_" > <b><i>latitud</i></b> </label>
-            {!! Form::text('latitud', null, ['class'=>'form-control', 'placeholder'=>'Latitud', 'id'=>'latitud_', 'required']) !!}
-          </div>
-          <div class="col-md-8">
-            <label for="longitud_" > <b><i>Longitud</i></b> </label>
-            {!! Form::text('longitud', null, ['class'=>'form-control', 'placeholder'=>'Longitud', 'id'=>'longitud_', 'required']) !!}
+          <div class="col-md-12">
+            <label for="coordenadas_" > <b><i>Coordenadas</i></b> </label>
+            {!! Form::textarea('coordenadas', null, ['class'=>'form-control', 'placeholder'=>'-19.55, -65.4545', 'id'=>'coordenadas_',  'required' ]) !!}
           </div>
         </div>
 

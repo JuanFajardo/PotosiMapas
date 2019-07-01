@@ -27,29 +27,36 @@ class GeoController extends Controller
 
   public function verMapa($id){
     $boton = \App\Boton::find($id);
-    $mapas = "";
 
-    if($boton->tipo == "linea")
-      $mapas =  \DB::table('botons')->join('detalles', 'botons.id', '=', 'detalles.id_boton')
+    $mapas =  \DB::table('botons')->join('detalles', 'botons.id', '=', 'detalles.id_boton')
                                     ->where('botons.id', '=', $id)
-                                    ->select('detalles.id as idDetalleMapa', 'detalles.color')
-                                    ->groupBy('detalles.id', 'detalles.color')->get();
-    else
-      $mapas = "";
+                                    ->select('detalles.id as idDetalleMapa', 'detalles.color', 'detalles.estado')
+                                    ->groupBy('detalles.id', 'detalles.color', 'detalles.estado')->get();
 
     $datos = \DB::table('botons')->join('detalles', 'botons.id', '=', 'detalles.id_boton')
                                  ->join('geos', 'detalles.id', '=', 'geos.id_detalle')
                                   ->where('botons.id', '=', $id)
                                   ->select('botons.*', 'detalles.titulo', 'detalles.id as idDetalleDato', 'detalles.color', 'detalles.descripcion', 'detalles.imagen as foto', 'geos.*')
                                   ->get();
-    return view('mapa.index', compact('datos', 'mapas'));
+
+    $menuId = \DB::table('botons')->where('botons.id', '=', $id)->get();
+    $menuId = $menuId[0]->tipo;
+    return view('mapa.index', compact('datos', 'mapas', 'menuId'));
   }
 
   public function guardar(Request $request){
     $request['user_id'] = 1; //\Auth::user()->id;
-    $dato = new Geo;
-    $dato->fill($request->all());
-    $dato->save();
+    $coors =  explode("\r\n", $request->coordenadas );
+    foreach ($coors as $coor) {
+      $geografia = explode(",", $coor);
+      $request['latitud'] = trim($geografia[0]);
+      $request['longitud'] = trim($geografia[1]);
+
+      $dato = new Geo;
+      $dato->fill($request->all());
+      $dato->save();
+    }
+
     return redirect('/Geo');
   }
 
