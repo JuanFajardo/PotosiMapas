@@ -3,7 +3,7 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
             <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html"><strong>GAMP</strong></a>
+        <a class="navbar-brand" href="{{asset('/index.php')}}"><strong>GAMP</strong></a>
     </div>
 
     <ul class="nav navbar-top-links navbar-right">

@@ -20,15 +20,32 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   </head>
-  <body>
+  <body style="background-color:red; background-image:url('{{asset('/img/images.jpeg')}}'); background-repeat: no-repeat; background-attachment: fixed; ">
     @yield('titulo')
 
     <div style="float: left; width:15%; vertical-align: text-bottom; vertical-align: super; position: absolute; top:55px;   z-index: 2;">
 
       <div class="row" >
         <div class="col-md-12">
+            @yield('menu')
 
-
+            <?php $link = \URL::current(); $numero = explode('/', $link); ?>
+            @if ( end($numero) == 'index.php' )
+              <?php $menus = \App\Menu::all(); ?>
+              <ul class="nav nav-list">
+              @foreach($menus as $menu)
+                <li ><label class="tree-toggler nav-header btn btn-primary"  style="width:100%;"> {!! $menu->menu !!}</label>
+                  <?php $botones =\DB::table('botons')->where('tipo', '=', $menu->id)->orderBy('icono', 'asc')->get(); ?>
+                  <ul class="nav nav-list">
+                  @foreach($botones as $boton)
+                    <li><a href="{{asset('index.php/Mapa/'.$boton->id)}}" class="btn btn-default"> {{$boton->boton}} </a></li>
+                  @endforeach
+                  </ul>
+                </li>
+              @endforeach
+              </ul>
+            @endif
+                 <!--
                   <ul class="nav nav-list">
                       <li class=""><label class="tree-toggler nav-header btn btn-primary"  style="width:100%;"> 1. SERVICIOS BASICOS </label>
                           <ul class="nav nav-list @yield('m1')">
@@ -60,10 +77,12 @@
                           </ul>
                       </li>
                   </ul>
+                -->
 
         </div>
       </div>
     </div>
+
 
     <div id="map"></div>
 

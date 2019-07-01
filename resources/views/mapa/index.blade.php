@@ -10,6 +10,29 @@
   </div>
 @endsection
 
+
+@section('menu')
+  <?php $menus = \App\Menu::all(); ?>
+  <ul class="nav nav-list">
+  @foreach($menus as $menu)
+    <li ><label class="tree-toggler nav-header btn btn-primary"  style="width:100%;"> {!! $menu->menu !!}</label>
+      <?php $botones =\DB::table('botons')->where('tipo', '=', $menu->id)->orderBy('icono', 'asc')->get(); ?>
+
+      @if(  $menu->id == $menuId)
+        <ul class="nav nav-list">
+      @else
+        <ul class="nav nav-list tree">
+      @endif
+
+      @foreach($botones as $boton)
+        <li><a href="{{asset('index.php/Mapa/'.$boton->id)}}" class="btn btn-default"> {{$boton->boton}} </a></li>
+      @endforeach
+      </ul>
+    </li>
+  @endforeach
+  </ul>
+@endsection
+
 @section('m1')
 @if( end($numero) == "4" || end($numero) == "9" || end($numero) == "10" || end($numero) == "12" || end($numero) == "13" )
 
@@ -49,7 +72,6 @@ tree
           </p>
         </div>
       </div>
-
     </div>
   </div>
   @endforeach
@@ -59,10 +81,13 @@ tree
 
 @section('js')
 <script type="text/javascript">
-  @if( $datos[0]->tipo == "linea")
-    var map;
+  var map;
 
-    @foreach($mapas as $mapa)
+  //*******************************************************************************************************************
+  @foreach($mapas as $mapa)
+
+    ////////////////////////////////INICIO_LINEAS
+    @if( $mapa->estado == "linea")
     function area{{$mapa->idDetalleMapa}}(){
       var flightPlanCoordinates = [
 		      @foreach($datos as $dato)
@@ -74,60 +99,91 @@ tree
   	  flightPath7 = new google.maps.Polyline( { path: flightPlanCoordinates, geodesic: true, strokeColor: '{{$mapa->color}}', strokeOpacity: 0.7, strokeWeight: 10, } );
       flightPath7.setMap(map);
     }
-    @endforeach
+    @endif
+    ////////////////////////////////FIN_LINEAS
 
-    function initMap() {
-     var ulur = {lat: -19.5844895, lng: -65.7527863};
-     map = new google.maps.Map(document.getElementById('map'), { zoom: 13,  center: ulur, mapTypeId: google.maps.MapTypeId.SATELLITE });
-     @foreach($mapas as $mapa)
-      area{{$mapa->idDetalleMapa}}();
-     @endforeach
-   }
 
-  @elseif( $datos[0]->tipo == "punto")
-    @foreach($datos as $dato)
-      var modal{{$dato->id}} = document.getElementById('salud{{$dato->id}}');
-    	var span{{$dato->id}} = document.getElementsByClassName("close")[0];
-    @endforeach
+    ////////////////////////////////INICIO_PUNTOS
+    @if( $mapa->estado == "punto" )
 
-    window.onclick = function(event) {
       @foreach($datos as $dato)
-        if ( event.target == modal{{$dato->id}} )  modal{{$dato->id}}.style.display = "none";
+        @if($mapa->idDetalleMapa == $dato->idDetalleDato)
+          var modal{{$dato->id}} = document.getElementById('salud{{$dato->id}}');
+          var span{{$dato->id}} = document.getElementsByClassName("close")[0];
+        @endif
       @endforeach
-    }
 
+
+
+
+    @endif
+    ////////////////////////////////FIN_PUNTOS
+
+  @endforeach
+  //*******************************************************************************************************************
+
+
+  window.onclick = function(event) {
+    @foreach($mapas as $mapa)
     @foreach($datos as $dato)
-      span{{$dato->id}}.onclick = function() { modal{{$dato->id}}.style.display = "none"; }
+      @if($mapa->idDetalleMapa == $dato->idDetalleDato)
+        if ( event.target == modal{{$dato->id}} )  modal{{$dato->id}}.style.display = "none";
+      @endif
     @endforeach
+    @endforeach
+  }
 
-    function initMap() {
-     var uluru = {lat: -19.5844895, lng: -65.7527863};
-     /*
-    roadmap displays the default road map view. This is the default map type.
-    satellite displays Google Earth satellite images.
-    hybrid displays a mixture of normal and satellite views.
-    terrain displays a physical map based on terrain information.
-     */
-     map = new google.maps.Map(document.getElementById('map'), { zoom: 13,  center: uluru, mapTypeId: google.maps.MapTypeId.SATELLITE });
+  @foreach($mapas as $mapa)
+  @foreach($datos as $dato)
+    @if($mapa->idDetalleMapa == $dato->idDetalleDato)
+      span{{ $dato->id }}.onclick = function() { modal{{$dato->id}}.style.display = "none"; }
+    @endif
+  @endforeach
+  @endforeach
 
 
-     var pinColor = "{{ explode('#', $datos[0]->color)[1] }}";
-     var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
-        new google.maps.Size(21, 34),
-        new google.maps.Point(0,0),
-        new google.maps.Point(10, 34));
 
-     @foreach($datos as $dato)
-       //var image{{$dato->id}} = new google.maps.MarkerImage( '{{asset("/")}}/23394.png', new google.maps.Size(100,100));
-       var place{{$dato->id}} = new google.maps.LatLng({{$dato->latitud}}, {{$dato->longitud}});
-       var marker{{$dato->id}} = new google.maps.Marker({ position: place{{$dato->id}}, map: map ,  icon: pinImage, title: '{{$dato->titulo}}'  , animation: google.maps.Animation.DROP,});
-       function showInfo{{$dato->id}}() {
-         var modal{{$dato->id}} = document.getElementById('salud{{$dato->id}}');
-         modal{{$dato->id}}.style.display = 'block';
-       }
-       google.maps.event.addListener(marker{{$dato->id}}, 'click', showInfo{{$dato->id}} );
-     @endforeach
-    }
-  @endif
+  //////////////////////////////////////////////////////////////////////////////
+  function initMap() {
+      var uluru = {lat: -19.5844895, lng: -65.7527863};
+      /*roadmap satellite hybrid terrain */
+      map = new google.maps.Map(document.getElementById('map'), { zoom: 13,  center: uluru, mapTypeId: google.maps.MapTypeId.SATELLITE });
+
+      @foreach($mapas as $mapa)
+
+        //---------------------LINEAS
+        @if( $mapa->estado == "linea")
+          area{{$mapa->idDetalleMapa}}();
+        @endif
+        //---------------------LINEAS
+
+        //------------------PUNTOS
+        @if( $mapa->estado == "punto")
+          var pinColor = "{{ explode('#', $mapa->color)[1] }}";
+          var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+              new google.maps.Size(21, 34),
+              new google.maps.Point(0,0),
+              new google.maps.Point(10, 34));
+
+
+          @foreach($datos as $dato)
+            @if( $mapa->idDetalleMapa == $dato->idDetalleDato )
+              var place{{$dato->id}} = new google.maps.LatLng({{$dato->latitud}}, {{$dato->longitud}});
+              var marker{{$dato->id}} = new google.maps.Marker({ position: place{{$dato->id}}, map: map ,  icon: pinImage, title: '{{$dato->titulo}}'  , animation: google.maps.Animation.DROP,});
+              function showInfo{{$dato->id}}() {
+                var modal{{$dato->id}} = document.getElementById('salud{{$dato->id}}');
+                    modal{{$dato->id}}.style.display = 'block';
+              }
+              google.maps.event.addListener(marker{{$dato->id}}, 'click', showInfo{{$dato->id}} );
+            @endif
+          @endforeach
+        @endif
+        //------------------PUNTOS
+
+      @endforeach
+
+  }
+  //////////////////////////////////////////////////////////////////////////////
+
 </script>
 @endsection

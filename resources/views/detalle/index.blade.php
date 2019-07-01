@@ -62,7 +62,7 @@
                 {{ Form::radio('estado', 'linea' , false, ['id'=>'linea_']) }}
               </div>
               <div class="col-md-6">
-                Puntos
+                Punto
                 {{ Form::radio('estado', 'punto' , false ,['id'=>'punto_']) }}
               </div>
             </div>
@@ -123,11 +123,11 @@
                                 <div class="row">
                                   <div class="col-md-6">
                                     Poligono
-                                    {{ Form::radio('estado', 'linea' , false, ['id'=>'linea_']) }}
+                                    {{ Form::radio('estado', 'linea' , false, ['id'=>'linea']) }}
                                   </div>
                                   <div class="col-md-6">
-                                    Puntos
-                                    {{ Form::radio('estado', 'punto' , false ,['id'=>'punto_']) }}
+                                    Punto
+                                    {{ Form::radio('estado', 'punto' , false ,['id'=>'punto']) }}
                                   </div>
                                 </div>
                               </div>
@@ -159,10 +159,12 @@
   <thead>
     <tr>
       <th>Id</th>
+
       <th>Boton</th>
       <th>Titulo</th>
       <th>Descripcion</th>
       <th>Color</th>
+      <th>Tipo</th>
       <th>Imagen</th>
       <th>Acciones</th>
     </tr>
@@ -175,6 +177,12 @@
         <td> {{ $dato->titulo }}</td>
         <td> {{ $dato->descripcion }}</td>
         <td> <p style="background-color:{{ $dato->color }};">&nbsp;</p> </td>
+        <td> @if( trim($dato->estado) == "linea")
+              <b>/</b>
+            @elseif(trim($dato->estado) == "punto")
+            <b>.</b>
+            @endif
+        </td>
         <td> <img src="{{ asset('RughHXvNTFm9zzBett0zzPpFGaE2r7mjB9/'.$dato->imagen) }}" alt="" width="70"> </td>
         <td>
           <a href="#modalModifiar"  data-toggle="modal" data-target="" class="actualizar" style="color: #B8823B;"> <li class="fa fa-edit"></li> Editar</a> <br>
@@ -232,6 +240,12 @@
           $('#color').val(el.color);
           $('#descripcion').val(el.descripcion);
           $('#id_boton').val(el.id_boton);
+          if(el.estado.trim() == 'punto'){
+            $('#punto').attr('checked', 'true');
+          }else if(el.estado.trim() == 'linea'){
+            $('#linea').attr('checked', 'true');
+          }
+
         });
       }
     });

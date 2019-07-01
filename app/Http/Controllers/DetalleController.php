@@ -34,6 +34,7 @@ class DetalleController extends Controller
   }
 
   public function update(Request $request, $id){
+    //return $request->all();
     $request['user_id'] = 1; //\Auth::user()->id;
     if( isset($request->imagen)  ){
       $dato = Detalle::find($id);
@@ -44,6 +45,7 @@ class DetalleController extends Controller
       $dato->titulo     = $request->titulo;
       $dato->descripcion= $request->descripcion;
       $dato->color      = $request->color;
+      $dato->estado     = $request->estado;
       $dato->id_boton   = $request->id_boton;
       $dato->save();
     }

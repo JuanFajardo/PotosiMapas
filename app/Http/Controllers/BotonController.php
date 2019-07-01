@@ -12,10 +12,11 @@ class BotonController extends Controller
 
   public function index(Request $request){
     $datos = Boton::all();
+    $menus = \App\Menu::all();
     if ($request->ajax()) {
       return $datos;
     }else{
-      return view('boton.index', compact('datos'));
+      return view('boton.index', compact('datos', 'menus'));
     }
   }
 
@@ -33,10 +34,20 @@ class BotonController extends Controller
   }
 
   public function update(Request $request, $id){
-    $dato = Boton::find($id);
     $request['user_id'] = 1;//\Auth::user()->id;
-    $dato->fill($request->all());
-    $dato->save();
+    if( isset($request->imagen)  ){
+      $dato = Boton::find($id);
+      $dato->fill($request->all());
+      $dato->save();
+    }else{
+      $dato = Boton::find($id);
+      $dato->boton  = $request->boton;
+      $dato->icono  = $request->icono;
+      $dato->tipo   = $request->tipo;
+      //$dato->user_id= $request->user_id;
+      $dato->save();
+    }
+
     return redirect('/Boton');
   }
 

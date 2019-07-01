@@ -31,13 +31,14 @@
             <label for="boton_" > <b><i>Nombre del Boton</i></b> </label>
             {!! Form::text('boton', null, ['class'=>'form-control', 'placeholder'=>'Boton', 'id'=>'boton_', 'required']) !!}
           </div>
+
           <div class="col-md-2">
-            <label for="icono_" > <b><i>Icono </i></b> </label>
-            {!! Form::text('icono', null, ['class'=>'form-control', 'placeholder'=>'fa fa-home', 'id'=>'icono_', 'required']) !!}
+            <label for="tipo_" > <b><i>Menu</i></b> </label>
+            {!! Form::select('tipo', \App\Menu::pluck('menu', 'id'), null, ['class'=>'form-control', 'placeholder'=>'', 'id'=>'tipo_', 'required']) !!}
           </div>
           <div class="col-md-2">
-            <label for="tipo_" > <b><i>Tipo</i></b> </label>
-            {!! Form::select('tipo', ['linea'=>'linea', 'punto'=>'punto'], null, ['class'=>'form-control', 'placeholder'=>'', 'id'=>'tipo_', 'required']) !!}
+            <label for="icono_" > <b><i>Posicion </i></b> </label>
+            {!! Form::number('icono', null, ['class'=>'form-control', 'placeholder'=>'1', 'id'=>'icono_', 'required']) !!}
           </div>
           <div class="col-md-4">
             <label for="imagen_" > <b><i>Imagen</i></b> </label>
@@ -71,15 +72,16 @@
                         <label for="boton" > <b><i>Nombre del Boton</i></b> </label>
                         {!! Form::text('boton', null, ['class'=>'form-control', 'placeholder'=>'Boton', 'id'=>'boton', 'required']) !!}
                       </div>
+
                       <div class="col-md-2">
-                        <label for="icono" > <b><i>Icono </i></b> </label>
-                        {!! Form::text('icono', null, ['class'=>'form-control', 'placeholder'=>'fa fa-home', 'id'=>'icono', 'required']) !!}
+                        <label for="tipo" > <b><i>Menu</i></b> </label>
+                        {!! Form::select('tipo', \App\Menu::pluck('menu', 'id'), null, ['class'=>'form-control', 'placeholder'=>'', 'id'=>'tipo', 'required']) !!}
                       </div>
                       <div class="col-md-2">
-                        <label for="tipo" > <b><i>Tipo</i></b> </label>
-                        {!! Form::select('tipo', ['linea'=>'linea', 'punto'=>'punto'], null, ['class'=>'form-control', 'placeholder'=>'', 'id'=>'tipo', 'required']) !!}
+                        <label for="icono" > <b><i>Posicion </i></b> </label>
+                        {!! Form::number('icono', null, ['class'=>'form-control', 'placeholder'=>'1', 'id'=>'icono', 'required']) !!}
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-4">
                         <label for="imagen" > <b><i>Imagen</i></b> </label>
                         {!! Form::file('imagen', null, ['class'=>'form-control', 'placeholder'=>'Imagen', 'id'=>'imagen', 'required']) !!}
                       </div>
@@ -97,18 +99,14 @@
 
 
 @section('cuerpo')
-@if( \Session::get('clave') == "OK" )
-  <script type="text/javascript">
-    alert("La contraseña se actualizo correctamente");
-  </script>
-@endif
 <table id="tablaGamp" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
   <thead>
     <tr>
       <th>Id</th>
       <th>Boton</th>
-      <th>Icono</th>
-      <th>Tipo</th>
+
+      <th>Menu</th>
+      <th>Posicion</th>
       <th>Imagen</th>
       <th>Acciones</th>
     </tr>
@@ -118,8 +116,15 @@
       <tr data-id="{{ $dato->id }}">
         <td>{{ $dato->id }}</td>
         <td>{{ $dato->boton }}</td>
-        <td> <i class="{{ $dato->icono }}"></i>  </td>
-        <td>{{ $dato->tipo }}</td>
+
+        <td>@foreach($menus as $menu)
+              @if($menu->id == $dato->tipo)
+                {{ $menu->menu }}
+              @endif
+            @endforeach
+        </td>
+
+        <td> {{ $dato->icono }} </td>
         <td> <img src="{{asset('RughHXvNTFm9zzBett0zzPpFGaE2r7mjB9/'.$dato->imagen)}}" alt="" width="50"></td>
         <td>
           <a href="#modalModifiar"  data-toggle="modal" data-target="" class="actualizar" style="color: #B8823B;"> <li class="fa fa-edit"></li>Editar</a> &nbsp;&nbsp;&nbsp;
@@ -138,7 +143,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('#tablaGamp').DataTable({
-      "order": [[ 7, 'asc']],
+      "order": [[ 2, 'desc']],
       "language": {
         "bDeferRender": true,
         "sEmtpyTable": "No ay registros",
@@ -172,6 +177,8 @@
       if(data.length > 0){
         $.each(data, function(index, el) {
           $('#boton').val(el.boton);
+          $('#tipo').val(el.tipo);
+          $('#icono').val(el.icono);
         });
       }
     });
