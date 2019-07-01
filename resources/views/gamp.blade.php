@@ -20,7 +20,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   </head>
-  <body style="background-color:red; background-image:url('{{asset('/img/images.jpeg')}}'); background-repeat: no-repeat; background-attachment: fixed; ">
+  <body style="background-color:#cd0000; background-image:url('{{asset('/img/images.jpeg')}}') ; background-repeat: no-repeat; background-attachment: fixed; ">
     @yield('titulo')
 
     <div style="float: left; width:15%; vertical-align: text-bottom; vertical-align: super; position: absolute; top:55px;   z-index: 2;">
